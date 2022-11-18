@@ -6,90 +6,120 @@
 /*   By: lcadinot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:36:19 by lcadinot          #+#    #+#             */
-/*   Updated: 2022/11/15 19:36:57 by lcadinot         ###   ########.fr       */
+/*   Updated: 2022/11/18 14:56:48 by lcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../libft/libft.h"
 
+/*-------------------------STRUCT------------------------*/
+
+typedef struct Data Data;
+struct	Data
+{
+	char	type;
+	int		neg;
+};
+
 /*----------------printnum----------------------------*/
 
-int ft_printhexa(const char *str, int num)
+int formater_x(Data data, va_list ap)
 {
     return (1);       
 }
 
-int ft_printinteger(const char *str, int num)
+int	formater_d(Data data, va_list ap)
 {
-    return (1);
+	return (1);
 }
 
-int ft_printdecimal(const char *str, int num)
-{
-    return (1);
-}
-
-int ft_printprcnt(const char *str, int num)
+int formater_p(Data data, va_list ap)
 {
     return (1);
 }
 /*----------------------printchar---------------------------*/
 
-char	ft_printchar(const char *str, const char c)
+int	formater_c(Data data, va_list ap)
 {
-	//printf("writed >>>");
-	write(1, &c, 1);
-	return (c);
 	
+	//printf("writed >>>");
+	return (1);
 }
 
-char	*ft_printstr(const char *str, const char *value)
+int	formater_pe(Data data, va_list ap)
 {
-	
-	return ((char *)str);
+	return (1);
+}
+
+int	formater_u(Data data, va_list ap)
+{
+	return (1);
+}
+
+int	formater_s(Data data, va_list ap)
+{
+	int	value;
+
+	value = 0;
+	return (value);
 }
 
 /*-----------------------------------------------------------*/
 
-char	ft_format(const char *str, void *value)
+int	formater(struct Data data, va_list ap)
 {
-	int		i;
-	char	c;
+	int	str_len;
 
-	i = 0;
-	c = str[i];
-	while (str[i])
-	{
-		if (c == '%')
-		{
-			i++;
-			if (str[i]== 'd')
-				ft_printdecimal(str, (int)value);
-			else if (str[i]== 'c')
-				ft_printchar(str, (const char)value);
-			else if (str[i]== 'i')
-				ft_printinteger(str, (int)value);
-			else if (str[i]== 'x')
-				ft_printhexa(str, (int)value);
-			else if (str[i]== 'X')
-				ft_printhexa(str, (int)value);
-			else if (str[i]== '%')
-				ft_printprcnt(str, (int)value);
-			else if (str[i]== 's')
-				ft_printstr(str, (const char *)value);
-		}
-		i++;
-	}
+	str_len = 0;
+	
+	if (data.type == 'd' || data.type == 'i')
+		str_len += formater_d(data, ap);
+	else if (data.type == 'u')
+		str_len += formater_u(data, ap);
+	else if (data.type == 'x' || data.type == 'X')
+		str_len += formater_x(data, ap);
+	else if (data.type == 'c')
+		str_len += formater_c(data, ap);
+	else if (data.type == 's')
+		str_len += formater_s(data, ap);
+	else if (data.type == 'p')
+		str_len += formater_p(data, ap);
+	else if (data.type == '%')
+		str_len += formater_pe(data, ap);
+	return (str_len);
 }
 
-int	ft_printf(const char *str, void *value)
+void	parser(const char *format, va_list ap, Data data)
+{
+	int		i;
+	char	ret;
+
+	i = 0;
+	while (format[++i])
+	{
+		if (format[i] == '%')
+		{
+			data.type = format[i + 1];
+			i = formater(data, ap);
+		}
+		else
+			ret += write(1, &format[i], 1);
+		i++;
+	}
+	return ;
+}
+
+int	ft_printf(const char *str, ...)
 {
 	int		i;
 	int		j;
+	int		nb_params;
 	char	c;
+	va_list		ap;
+	void	*cur_params;
+	Data	data;
 
-	i = 0;
-	ft_format(str, value);
+	parser(str, ap, data);
 	return (c);
 }
 int	main(int argc, char **argv)
@@ -103,7 +133,7 @@ int	main(int argc, char **argv)
 	int		prcnt;
 	int		i = 3;
 
-	ft_printf("%c", (void *)character);
+	ft_printf("%c %c", character, character);
 	//printf("deci == %d", deci);
 	//printf("hexa == %x", hexa);
 	//printf("maj_hexa == %X", maj_hexa);
