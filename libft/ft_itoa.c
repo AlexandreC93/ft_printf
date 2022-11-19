@@ -6,13 +6,13 @@
 /*   By: lcadinot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 12:26:00 by lcadinot          #+#    #+#             */
-/*   Updated: 2022/11/15 12:26:02 by lcadinot         ###   ########.fr       */
+/*   Updated: 2022/11/19 18:59:23 by lcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_itoa_size(int n)
+static int	ft_itoa_size(long int n)
 {
 	int		size;
 
@@ -34,12 +34,12 @@ static int	ft_itoa_size(int n)
 	return (size);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa(long int n)
 {
 	char			*str;
 	int				i;
 	int				neg;
-	unsigned int	tmp;
+	long int	tmp;
 
 	neg = 0;
 	if (n < 0)
@@ -60,5 +60,6 @@ char	*ft_itoa(int n)
 	}
 	if (neg)
 		*str = '-';
+	printf("itoa >> %s", str);
 	return (str);
 }

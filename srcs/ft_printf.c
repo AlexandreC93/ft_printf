@@ -6,11 +6,12 @@
 /*   By: lcadinot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:36:19 by lcadinot          #+#    #+#             */
-/*   Updated: 2022/11/19 15:57:44 by lcadinot         ###   ########.fr       */
+/*   Updated: 2022/11/19 19:31:49 by lcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
+#include <limits.h>
 
 /*-------------------------STRUCT------------------------*/
 
@@ -22,7 +23,7 @@ struct	Data
 	int		neg;
 };
 
-int	puthexa_base(int num, Data data)
+int	puthexa_base(long int num, Data data)
 {
 	char	res[100];
 	char	sign;
@@ -50,16 +51,16 @@ int	puthexa_base(int num, Data data)
 	}
 	while (--i >= 0)
 		write(1, &base[res[i]], 1);
-	return (i);
+	return (j);
 }
 
 /*----------------printnum----------------------------*/
 
 int formater_x(Data data, va_list ap)
 {
-	int		num;
+	long int		num;
 
-	num = va_arg(ap, int);
+	num = va_arg(ap, long int);
 	num = puthexa_base(num, data);
 		
 	return (1);       
@@ -82,8 +83,10 @@ int	formater_d(Data data, va_list ap)
 int formater_p(Data data, va_list ap)
 {
 	void	*p;
-	p = va_arg(ap, void *);
-	write(1, &p, 1);
+	void	*p1;
+	p1 = va_arg(ap, void *);
+	printf("ptr > %p", p);
+	write(1, *p, 15);
     return (1);
 }
 /*----------------------printchar---------------------------*/
@@ -102,11 +105,24 @@ int	formater_c(Data data, va_list ap)
 
 int	formater_pe(Data data, va_list ap)
 {
+	int		percent;
+
+	percent = '%';
+	write(1, &percent, 1);
 	return (1);
 }
 
 int	formater_u(Data data, va_list ap)
 {
+	unsigned int	num;
+	char	*res;
+	int		i;
+
+	i = 0;
+	num = va_arg(ap, unsigned int);
+	res = ft_itoa(num);
+	while (res[i])
+		write(1, &res[i++], 1);
 	return (1);
 }
 
@@ -170,7 +186,7 @@ int	parser(const char *format, va_list ap, Data data)
 		if (format[i] == '%')
 		{
 			data.type = format[i + 1];
-			printf("ty > %c\n", data.type);
+		//	printf("ty > %c\n", data.type);
 			j += formater(data, ap, format);
 			i++;
 		}
@@ -206,8 +222,8 @@ int	main(int argc, char **argv)
 	char s2[50] = "ca va";
 	char s1[50] = "salut";
 	
-	printf("%X", deci);
-	ft_printf("%x", deci);
+	printf("pr >> %p\n", &ptr);
+	ft_printf("ft >> %p\n", &ptr);
 	//printf("deci == %d", deci);
 	//printf("hexa == %x", hexa);
 	//printf("majhexa == %X", maj_hexa);
