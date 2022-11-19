@@ -6,7 +6,7 @@
 /*   By: lcadinot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:36:19 by lcadinot          #+#    #+#             */
-/*   Updated: 2022/11/18 17:06:03 by lcadinot         ###   ########.fr       */
+/*   Updated: 2022/11/19 15:57:44 by lcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,68 @@ struct	Data
 	int		neg;
 };
 
+int	puthexa_base(int num, Data data)
+{
+	char	res[100];
+	char	sign;
+	char	*base;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	base = "0123456789ABCDEF";
+	if (data.type == 'x')
+		base = "0123456789abcdef";
+	sign = '-';
+	if (num < 0)
+	{
+		write(1, &sign, 1);
+		num = -num;
+	}
+	while (num)
+	{
+		res[i] = num % 16;
+		num = num / 16;
+		i++;
+		j++;	
+	}
+	while (--i >= 0)
+		write(1, &base[res[i]], 1);
+	return (i);
+}
+
 /*----------------printnum----------------------------*/
 
 int formater_x(Data data, va_list ap)
 {
-    return (1);       
+	int		num;
+
+	num = va_arg(ap, int);
+	num = puthexa_base(num, data);
+		
+	return (1);       
 }
 
 int	formater_d(Data data, va_list ap)
 {
-	return (1);
+	int		i;
+	int		num;
+	char	*res;
+
+	i = 0;
+	num = va_arg(ap, int);
+	res = ft_itoa(num);
+	while (res[i])
+		write(1,&res[i++], 1);
+	return (i);
 }
 
 int formater_p(Data data, va_list ap)
 {
+	void	*p;
+	p = va_arg(ap, void *);
+	write(1, &p, 1);
     return (1);
 }
 /*----------------------printchar---------------------------*/
@@ -147,18 +195,19 @@ int	ft_printf(const char *str, ...)
 }
 int	main(int argc, char **argv)
 {
-	int		deci = 10;
+	int		deci = 198;
 	int		hexa;
 	int		maj_hexa;
 	char	character = 'b';
 	char	str[4];
-	char	*ptr;
+	void	*ptr;
 	int		prcnt;
 
 	char s2[50] = "ca va";
 	char s1[50] = "salut";
-
-	ft_printf("%s || %s", s1, s2);
+	
+	printf("%X", deci);
+	ft_printf("%x", deci);
 	//printf("deci == %d", deci);
 	//printf("hexa == %x", hexa);
 	//printf("majhexa == %X", maj_hexa);
