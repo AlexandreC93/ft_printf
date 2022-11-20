@@ -6,7 +6,7 @@
 /*   By: lcadinot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 12:26:00 by lcadinot          #+#    #+#             */
-/*   Updated: 2022/11/19 18:59:23 by lcadinot         ###   ########.fr       */
+/*   Updated: 2022/11/20 17:33:51 by lcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,5 @@ char	*ft_itoa(long int n)
 	}
 	if (neg)
 		*str = '-';
-	printf("itoa >> %s", str);
 	return (str);
 }

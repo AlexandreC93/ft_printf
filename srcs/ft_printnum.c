@@ -6,7 +6,7 @@
 /*   By: lcadinot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 15:48:06 by lcadinot          #+#    #+#             */
-/*   Updated: 2022/11/20 15:54:00 by lcadinot         ###   ########.fr       */
+/*   Updated: 2022/11/20 18:29:51 by lcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	puthexa_base(long int num, char type)
 
 	i = 0;
 	j = 0;
-	base = "0123456789ABCDEF";
-	if (type == 'x')
-		base = "0123456789abcdef";
+	base = "0123456789abcdef";
+	if (type == 'X')
+		base = "0123456789ABCDEF";
 	sign = '-';
 	if (num < 0)
 	{
@@ -65,8 +65,11 @@ int	formater_d(int num)
 	int		i;
 	char	*res;
 
+	res = ft_calloc(ft_strlen(ft_itoa((long int)num)) + 1, sizeof(char));
+	if (!res)
+		return (0);
 	i = 0;
-	res = ft_itoa(num);
+	res = ft_itoa((long int)num);
 	while (res[i])
 		write(1, &res[i++], 1);
 	return (i);

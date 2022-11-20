@@ -6,7 +6,7 @@
 /*   By: lcadinot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:36:19 by lcadinot          #+#    #+#             */
-/*   Updated: 2022/11/20 15:00:28 by lcadinot         ###   ########.fr       */
+/*   Updated: 2022/11/20 17:26:07 by lcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ int	formater(va_list ap, char type)
 	else if (type == 's')
 		str_len += formater_s(va_arg(ap, char *));
 	else if (type == 'p')
+	{
+		write(1, "0x", 2);
 		str_len += formater_p(va_arg(ap, unsigned long long));
+	}
 	else if (type == '%')
 		str_len += formater_pe();
 	return (str_len);
@@ -54,9 +57,11 @@ int	parser(const char *format, va_list ap)
 		else
 		{
 			write(1, &format[i], 1);
+			j++;
 		}
 		i++;
 	}
+	va_end(ap);
 	return (j);
 }
 
@@ -65,31 +70,31 @@ int	ft_printf(const char *str, ...)
 	va_list		ap;
 
 	va_start(ap, str);
-	parser(str, ap);
-	va_end(ap);
-	return (1);
+	return (parser(str, ap));
 }
-
-// int	main(int argc, char **argv)
-// {
-// 	int		deci = 198;
-// 	int		hexa;
-// 	int		maj_hexa;
-// 	char	character = 'b';
-// 	char	str[4];
-// 	void	*ptr;
-// 	int		prcnt;
-// 	char s2[50] = "ca va";
-// 	char s1[50] = "salut";
-// 	printf("pr >> %c\n", 2);
-// 	ft_printf("ft >> %c\n", 2);
-// 	//printf("deci == %d", deci);
-// 	//printf("hexa == %x", hexa);
-// 	//printf("majhexa == %X", maj_hexa);
-// 	//printf("character == %c", character);
-// 	//printf("str == %s", str);
-// 	//printf("ptr == %p", ptr);
-// 	//printf("prcnt == %%", prcnt);
-// 	//printf("integer == %i", integer);
-// 	return (0);
-// }
+/*
+int	main(void)
+{
+	//int		deci = 198;
+ 	//int		hexa;
+ 	//int		maj_hexa;
+ 	//char	character = 'b';
+ 	//char	str[4];
+ 	void	*ptr;
+	//int		prcnt;
+ 	//char s2[50] = "ca va";
+ 	//char s1[50] = "salut";
+ 	printf("%d\n",ft_printf("f %p\n", &ptr));
+	printf("%d\n", printf("t %p\n", &ptr));
+ 	//ft_printf("ft >> %c\n", 2);
+ 	//printf("deci == %d", deci);
+ 	//printf("hexa == %x", hexa);
+ 	//printf("majhexa == %X", maj_hexa);
+ 	//printf("character == %c", character);
+ 	//printf("str == %s", str);
+ 	//printf("ptr == %p", ptr);
+ 	//printf("prcnt == %%", prcnt);
+ 	//printf("integer == %i", integer);
+ 	return (0);
+ }
+*/

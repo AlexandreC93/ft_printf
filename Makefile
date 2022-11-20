@@ -20,7 +20,10 @@ BONUS_OBJS = $(BONUS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(AR) $@ $^
+	@make -C $(LIBFT)
+	@cp libft/libft.a .
+	@mv libft.a $(NAME)
+	$(AR) $(NAME) $(OBJ)
 
 clean:
 	$(RM) $(OBJ) $(BONUS_OBJS)
