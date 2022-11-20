@@ -1,14 +1,17 @@
 CC = gcc
 NAME = libftprintf.a
 AR = ar crs
-SRC = ft_printf.c \
+SRC = srcs/ft_printf.c \
+	  		srcs/ft_printchar.c \
+	  		srcs/ft_printptr.c \
+	  		srcs/ft_printnum.c \
+
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 OBJ = $(SRC:%.c=%.o)
 BONUS_OBJS = $(BONUS:.c=.o)
-.c.o: $(SRC)
-	$(CC) -o $@ -c $< $(CFLAGS)
-
+# .c.o: $(SRC)
+# 	$(CC) -o $@ -c $< $(CFLAGS)
 all: $(NAME)
 
 $(NAME): $(OBJ)
