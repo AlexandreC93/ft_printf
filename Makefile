@@ -1,10 +1,15 @@
 CC = gcc
 NAME = libftprintf.a
 AR = ar crs
+LIBFT = libft
+SRC_DIR = srcs/
+OBJ_DIR = obj/
+INCLUDES = includes
+
 SRC = srcs/ft_printf.c \
-	  		srcs/ft_printchar.c \
-	  		srcs/ft_printptr.c \
-	  		srcs/ft_printnum.c \
+	srcs/ft_printchar.c \
+	srcs/ft_printptr.c \
+	srcs/ft_printnum.c \
 
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f

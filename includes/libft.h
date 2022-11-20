@@ -6,7 +6,7 @@
 /*   By: lcadinot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 12:26:59 by lcadinot          #+#    #+#             */
-/*   Updated: 2022/11/19 19:00:57 by lcadinot         ###   ########.fr       */
+/*   Updated: 2022/11/20 16:43:12 by lcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void		ft_putnbr_fd(int n, int fd);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 char		*ft_strjoin(const char *s1, const char *s2);
 char		*ft_strtrim(char const *s1, char const *set);
-char		*ft_itoa(long int n);
+char		*ft_itoa(int n);
 char		**ft_split(char const *s, char c);
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void		ft_striteri(char *s, void (*f)(unsigned int, char *));
