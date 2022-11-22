@@ -6,7 +6,7 @@
 /*   By: lcadinot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 15:48:16 by lcadinot          #+#    #+#             */
-/*   Updated: 2022/11/20 17:22:53 by lcadinot         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:22:53 by lcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 int	formater_p(unsigned long long num)
 {
-	int		i;
 
-	i = 0;
 	if (num >= 16)
 	{
 		formater_p(num / 16);
@@ -26,14 +24,15 @@ int	formater_p(unsigned long long num)
 	{
 		if (num <= 9)
 		{
-			i++;
 			ft_putchar_fd(num + 48, 1);
+		//	printf("i9 >> %d\n", i);
 		}
 		else
 		{
-			i++;
 			ft_putchar_fd(num - 10 + 97, 1);
+		//	printf("ia >> %d\n", i);
 		}
 	}
-	return (14);
+	//printf("end >> %d\n", i);
+	return (12);
 }

@@ -6,26 +6,26 @@
 /*   By: lcadinot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 12:26:00 by lcadinot          #+#    #+#             */
-/*   Updated: 2022/11/20 17:33:51 by lcadinot         ###   ########.fr       */
+/*   Updated: 2022/11/22 21:28:38 by lcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_itoa_size(long int n)
+static int	ft_itoa_size(int n)
 {
 	int		size;
 
 	size = 0;
-	if (n < 0 && n > -2147483648)
+	if (n == INT_MIN)
+		return (11);
+	if (n < 0 && n > INT_MIN)
 	{
 		size++;
 		n = -n;
 	}
 	else if (n == 0)
 		return (1);
-	else if (n == -2147483648)
-		return (11);
 	while (n >= 1)
 	{
 		n /= 10;
@@ -34,12 +34,22 @@ static int	ft_itoa_size(long int n)
 	return (size);
 }
 
-char	*ft_itoa(long int n)
+long int	check_tmp(long int tmp, int n)
 {
+	tmp = n;
+	if (tmp == -2147483648)
+		tmp = 2147483648;
+	if (tmp < 0)
+		tmp = -n;
+	return (tmp);
+}
+
+char	*ft_itoa(int n)
+{
+	long int		tmp;
 	char			*str;
 	int				i;
 	int				neg;
-	long int	tmp;
 
 	neg = 0;
 	if (n < 0)
@@ -48,9 +58,9 @@ char	*ft_itoa(long int n)
 	str = (char *)ft_calloc(ft_itoa_size(n) + 1, sizeof(char));
 	if (!str)
 		return (NULL);
-	tmp = n;
-	if (n < 0)
-		tmp = -n;
+	tmp = 0;
+	tmp = check_tmp(tmp, n);
+	//printf("%ld", tmp);
 	if (tmp == 0)
 		str[tmp] = '0';
 	while (tmp >= 1)

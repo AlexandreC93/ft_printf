@@ -6,16 +6,31 @@
 /*   By: lcadinot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 15:48:06 by lcadinot          #+#    #+#             */
-/*   Updated: 2022/11/20 18:29:51 by lcadinot         ###   ########.fr       */
+/*   Updated: 2022/11/22 20:59:51 by lcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
+static int	check_num(long int num, int j)
+{
+	j = 0;
+	if (num == 0)
+	{
+		ft_putchar_fd('0', 1);
+		j++;
+	}
+	if (num < 0)
+	{
+		ft_putchar_fd('-', 1);
+		num = -num;
+	}
+	return (j);
+}
+
 int	puthexa_base(long int num, char type)
 {
-	char	res[100];
-	char	sign;
+	char	res[20];
 	char	*base;
 	int		i;
 	int		j;
@@ -25,12 +40,7 @@ int	puthexa_base(long int num, char type)
 	base = "0123456789abcdef";
 	if (type == 'X')
 		base = "0123456789ABCDEF";
-	sign = '-';
-	if (num < 0)
-	{
-		write(1, &sign, 1);
-		num = -num;
-	}
+	j = check_num(num, j);
 	while (num)
 	{
 		res[i++] = num % 16;
@@ -48,16 +58,17 @@ int	formater_u(unsigned int num)
 	int		i;
 
 	i = 0;
-	res = ft_itoa(num);
+	res = ft_itoa((unsigned int)num);
 	while (res[i])
 		write(1, &res[i++], 1);
-	return (1);
+	free(res);
+	return (i);
 }
 
 int	formater_x(long int num, char type)
 {
 	num = puthexa_base(num, type);
-	return (1);
+	return (num);
 }
 
 int	formater_d(int num)
@@ -65,12 +76,13 @@ int	formater_d(int num)
 	int		i;
 	char	*res;
 
-	res = ft_calloc(ft_strlen(ft_itoa((long int)num)) + 1, sizeof(char));
+	//printf("check >> %d\n", num);
+	res = ft_itoa(num);
 	if (!res)
 		return (0);
 	i = 0;
-	res = ft_itoa((long int)num);
 	while (res[i])
 		write(1, &res[i++], 1);
+	free(res);
 	return (i);
 }
