@@ -6,7 +6,7 @@
 /*   By: lcadinot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:36:19 by lcadinot          #+#    #+#             */
-/*   Updated: 2022/11/22 21:30:56 by lcadinot         ###   ########.fr       */
+/*   Updated: 2022/11/22 22:46:16 by lcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ int	main(void)
 	//int		prcnt;
  	//char s2[50] = "ca va";
  	//char s1[50] = "salut";
- 	printf("%d\n",ft_printf("f %d\n", INT_MIN));
-	printf("%d\n", printf("v %d\n", INT_MIN));
+ 	printf("%d\n",ft_printf("f %p\n", INT_MAX));
+	//printf("%d\n", printf("v %p\n", INT_MIN));
  	//ft_printf("ft >> %c\n", 2);
  	//printf("deci == %d", deci);
  	//printf("hexa == %x", hexa);

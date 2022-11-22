@@ -6,7 +6,7 @@
 /*   By: lcadinot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 12:26:00 by lcadinot          #+#    #+#             */
-/*   Updated: 2022/11/22 21:28:38 by lcadinot         ###   ########.fr       */
+/*   Updated: 2022/11/22 22:07:28 by lcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ char	*ft_itoa(int n)
 		return (NULL);
 	tmp = 0;
 	tmp = check_tmp(tmp, n);
-	//printf("%ld", tmp);
 	if (tmp == 0)
 		str[tmp] = '0';
 	while (tmp >= 1)
