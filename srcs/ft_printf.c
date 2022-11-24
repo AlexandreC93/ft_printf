@@ -6,7 +6,7 @@
 /*   By: lcadinot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:36:19 by lcadinot          #+#    #+#             */
-/*   Updated: 2022/11/22 22:46:16 by lcadinot         ###   ########.fr       */
+/*   Updated: 2022/11/24 17:58:43 by lcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 int	formater(va_list ap, char type, int str_len)
 {
-	int		i;
+	//int		i;
 
-	i = 0;
+	//i = 0;
 	if (type == 'd' || type == 'i')
 		str_len += formater_d(va_arg(ap, int));
 	else if (type == 'u')
@@ -30,8 +30,13 @@ int	formater(va_list ap, char type, int str_len)
 		str_len += formater_s(va_arg(ap, char *));
 	else if (type == 'p')
 	{
-		str_len += write(1, "0x", 2);
-		str_len += (formater_p(va_arg(ap, unsigned long long), i));
+	//	if (va_arg(ap, unsigned long) == 0)
+	//		str_len += write(1, "(nil)", 5);
+	//	else
+	//	{
+			str_len += write(1, "0x", 2);
+			str_len += puthexa_base(va_arg(ap, unsigned long), type);
+	//	}
 	}
 	else if (type == '%')
 		str_len += formater_pe();
@@ -89,8 +94,8 @@ int	main(void)
 	//int		prcnt;
  	//char s2[50] = "ca va";
  	//char s1[50] = "salut";
- 	printf("%d\n",ft_printf("f %p\n", INT_MAX));
-	//printf("%d\n", printf("v %p\n", INT_MIN));
+ 	printf("%d\n",ft_printf("f %p\n", LONG_MIN));
+	//printf("%d\n", printf("v %p\n", LONG_MIN));
  	//ft_printf("ft >> %c\n", 2);
  	//printf("deci == %d", deci);
  	//printf("hexa == %x", hexa);

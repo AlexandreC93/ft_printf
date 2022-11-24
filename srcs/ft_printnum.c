@@ -6,13 +6,13 @@
 /*   By: lcadinot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 15:48:06 by lcadinot          #+#    #+#             */
-/*   Updated: 2022/11/22 22:48:24 by lcadinot         ###   ########.fr       */
+/*   Updated: 2022/11/24 17:51:40 by lcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-static int	check_num(long int num, int j)
+static int	check_num(long int num, int j, char type)
 {
 	j = 0;
 	if (num == 0)
@@ -20,10 +20,11 @@ static int	check_num(long int num, int j)
 		ft_putchar_fd('0', 1);
 		j++;
 	}
-	if (num < 0)
+	if (num < 0 && type != 'p')
 	{
 		ft_putchar_fd('-', 1);
 		num = -num;
+		j++;
 	}
 	return (j);
 }
@@ -64,7 +65,7 @@ char	*ft_uitoa(unsigned int n)
 	return (str);
 }
 
-int	puthexa_base(long int num, char type)
+int	puthexa_base(unsigned long int num, char type)
 {
 	char	res[20];
 	char	*base;
@@ -76,7 +77,7 @@ int	puthexa_base(long int num, char type)
 	base = "0123456789abcdef";
 	if (type == 'X')
 		base = "0123456789ABCDEF";
-	j = check_num(num, j);
+	j = check_num(num, j, type);
 	while (num)
 	{
 		res[i++] = num % 16;
