@@ -6,7 +6,7 @@
 /*   By: lcadinot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:36:19 by lcadinot          #+#    #+#             */
-/*   Updated: 2022/11/24 17:58:43 by lcadinot         ###   ########.fr       */
+/*   Updated: 2022/11/25 19:18:55 by lcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 
 int	formater(va_list ap, char type, int str_len)
 {
-	//int		i;
-
-	//i = 0;
 	if (type == 'd' || type == 'i')
 		str_len += formater_d(va_arg(ap, int));
 	else if (type == 'u')
@@ -29,18 +26,9 @@ int	formater(va_list ap, char type, int str_len)
 	else if (type == 's')
 		str_len += formater_s(va_arg(ap, char *));
 	else if (type == 'p')
-	{
-	//	if (va_arg(ap, unsigned long) == 0)
-	//		str_len += write(1, "(nil)", 5);
-	//	else
-	//	{
-			str_len += write(1, "0x", 2);
-			str_len += puthexa_base(va_arg(ap, unsigned long), type);
-	//	}
-	}
+		str_len += puthexa_base(va_arg(ap, unsigned long), type);
 	else if (type == '%')
 		str_len += formater_pe();
-	//printf("formater >> %d\n", str_len);
 	return (str_len);
 }
 
@@ -70,18 +58,24 @@ int	parser(const char *format, va_list ap)
 		i++;
 	}
 	va_end(ap);
-	//printf("j>> %d\n", j);
 	return (j);
 }
 
 int	ft_printf(const char *str, ...)
 {
 	va_list		ap;
+	int			res;
 
+	if (!str)
+		return (-1);
+	res = 0;
 	va_start(ap, str);
-	return (parser(str, ap));
+	res = parser(str, ap);
+	va_end(ap);
+	return (res);
 }
-/*
+
+
 int	main(void)
 {
 	//int		deci = 198;
@@ -94,8 +88,8 @@ int	main(void)
 	//int		prcnt;
  	//char s2[50] = "ca va";
  	//char s1[50] = "salut";
- 	printf("%d\n",ft_printf("f %p\n", LONG_MIN));
-	//printf("%d\n", printf("v %p\n", LONG_MIN));
+ 	printf("%d\n",ft_printf(0));
+	printf("%d\n", printf(0));
  	//ft_printf("ft >> %c\n", 2);
  	//printf("deci == %d", deci);
  	//printf("hexa == %x", hexa);
@@ -107,4 +101,4 @@ int	main(void)
  	//printf("integer == %i", integer);
  	return (0);
  }
-*/
+
