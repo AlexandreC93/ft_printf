@@ -6,13 +6,13 @@
 /*   By: lcadinot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 15:48:06 by lcadinot          #+#    #+#             */
-/*   Updated: 2022/11/25 19:06:32 by lcadinot         ###   ########.fr       */
+/*   Updated: 2022/11/25 19:40:32 by lcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-static int	ft_uitoa_size(unsigned int n)
+int	ft_uitoa_size(unsigned int n)
 {
 	int		size;
 

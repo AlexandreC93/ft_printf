@@ -3,7 +3,6 @@ NAME = libftprintf.a
 AR = ar crs
 LIBFT = libft
 SRC_DIR = srcs/
-OBJ_DIR = obj/
 INCLUDES = includes
 
 SRC = srcs/ft_printf.c \
@@ -15,8 +14,6 @@ CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 OBJ = $(SRC:%.c=%.o)
 BONUS_OBJS = $(BONUS:.c=.o)
-# .c.o: $(SRC)
-# 	$(CC) -o $@ -c $< $(CFLAGS)
 all: $(NAME)
 
 $(NAME): $(OBJ)
@@ -26,13 +23,10 @@ $(NAME): $(OBJ)
 	$(AR) $(NAME) $(OBJ)
 
 clean:
-	$(RM) $(OBJ) $(BONUS_OBJS)
+	$(RM) $(OBJ)
 
 fclean: clean
 	$(RM) $(NAME)
-
-bonus:	$(OBJS) $(BONUS_OBJS)
-	ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
 
 re: fclean all
 

@@ -6,7 +6,7 @@
 /*   By: lcadinot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:36:19 by lcadinot          #+#    #+#             */
-/*   Updated: 2022/11/25 19:18:55 by lcadinot         ###   ########.fr       */
+/*   Updated: 2022/11/25 19:39:16 by lcadinot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	ft_printf(const char *str, ...)
 	return (res);
 }
 
-
+/*
 int	main(void)
 {
 	//int		deci = 198;
@@ -88,8 +88,8 @@ int	main(void)
 	//int		prcnt;
  	//char s2[50] = "ca va";
  	//char s1[50] = "salut";
- 	printf("%d\n",ft_printf(0));
-	printf("%d\n", printf(0));
+ 	printf("%d\n",ft_printf(""));
+	printf("%d\n", printf(""));
  	//ft_printf("ft >> %c\n", 2);
  	//printf("deci == %d", deci);
  	//printf("hexa == %x", hexa);
@@ -101,4 +101,4 @@ int	main(void)
  	//printf("integer == %i", integer);
  	return (0);
  }
-
+*/
