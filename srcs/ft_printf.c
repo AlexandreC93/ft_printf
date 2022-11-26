@@ -57,7 +57,6 @@ int	parser(const char *format, va_list ap)
 		}
 		i++;
 	}
-	va_end(ap);
 	return (j);
 }
 
